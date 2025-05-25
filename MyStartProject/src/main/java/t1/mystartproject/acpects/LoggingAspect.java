@@ -10,7 +10,7 @@ import t1.mystartproject.properties.LoggingProperties;
 import java.util.Map;
 import java.util.function.Consumer;
 
-@Component
+
 @Aspect
 @Slf4j
 public class LoggingAspect {
@@ -30,9 +30,6 @@ public class LoggingAspect {
 
     @Before("@annotation(t1.mystartproject.annotations.Logging)")
     public void logging(JoinPoint joinPoint) {
-        if (!loggingProperties.isEnabled()) {
-            return;
-        }
         logging(String.format("The method %s of class %s was called",
                 joinPoint.getSignature().getName(), joinPoint.getTarget().getClass().getName()), loggingProperties.getLevel());
     }
